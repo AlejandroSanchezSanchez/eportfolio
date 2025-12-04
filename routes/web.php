@@ -33,7 +33,9 @@ Route::prefix('familias_profesionales')->group(function () {
 
     Route::put('update/{id}', [FamiliasProfesionalesController::class, 'update'])->where('id', '[0-9]+');
 
-    Route::prefix('ciclos_formativos')->group(function () {
+   
+});
+ Route::prefix('ciclos_formativos')->group(function () {
 
         Route::get('/', [CiclosFormativosController::class, 'getIndex']);
 
@@ -49,8 +51,6 @@ Route::prefix('familias_profesionales')->group(function () {
 
         Route::put('update/{id}', [CiclosFormativosController::class, 'update'])->where('id', '[0-9]+');
     });
-});
-
 // ----------------------------------------
 Route::get('perfil/{id?}', function ($id = null) {
     if ($id === null)

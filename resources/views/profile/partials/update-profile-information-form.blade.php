@@ -20,13 +20,18 @@
         @method('patch')
 
 
+        <x-input-label for="name" :value="__('Avatar actual')" />
+
         @if ($user->avatar)
-            <img width="300" style="height:300px" src="{{ Storage::url($user->avatar) }}" alt="avatar"
+            <img width="150" style="height:150px" src="{{ Storage::url($user->avatar) }}" alt="avatar"
                 class="img-thumbnail">
         @else
-            <img width="300" style="height:300px" alt="Curriculum-vitae-warning-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Curriculum-vitae-warning-icon.svg/256px-Curriculum-vitae-warning-icon.svg.png">
+            <img width="150" style="height:150px" alt="Curriculum-vitae-warning-icon"
+                 src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y">
         @endif
+
+
+
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -62,9 +67,15 @@
         </div>
 
         <div class="form-group">
-            <label for="avatar">imagen</label>
-            <input type="file" class="form-control" id="avatar" name="avatar" placeholder="avatar">
+            <x-input-label for="avatar" :value="__('Imagen de Perfil')" />
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="avatar" name="avatar"
+                    placeholder="Selecciona una imagen" required>
+
+            </div>
+            <small class="form-text text-muted">Seleccione una imagen de perfil (máximo 2MB).</small>
         </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

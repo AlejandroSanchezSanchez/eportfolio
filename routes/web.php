@@ -9,6 +9,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\FamiliasProfesionalesController;
 use App\Http\Controllers\ResultadosAprendizajeController;
 use App\Http\Controllers\MatriculasController;
+use App\Http\Controllers\PortfolioImportController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,6 +24,24 @@ Route::get('login', function () {
 });
 Route::get('logout', function () {
     return "Logout usuario";
+});
+
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+    // Formulario de importación
+    Route::get('/portfolio/import', [PortfolioImportController::class, 'showImportForm'])
+        ->name('portfolio.import.index');
+
+    // Importar desde JSON Resume
+    Route::post('/portfolio/import/json-resume', [PortfolioImportController::class, 'importJsonResume'])
+        ->name('portfolio.import.json-resume');
+
+    // Importar desde GitHub
+    Route::post('/portfolio/import/github', [PortfolioImportController::class, 'importGitHub'])
+        ->name('portfolio.import.github');
 });
 
 

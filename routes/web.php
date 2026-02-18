@@ -27,24 +27,6 @@ Route::get('logout', function () {
 });
 
 
-
-
-
-Route::middleware(['auth'])->group(function () {
-    // Formulario de importación
-    Route::get('/portfolio/import', [PortfolioImportController::class, 'showImportForm'])
-        ->name('portfolio.import.index');
-
-    // Importar desde JSON Resume
-    Route::post('/portfolio/import/json-resume', [PortfolioImportController::class, 'importJsonResume'])
-        ->name('portfolio.import.json-resume');
-
-    // Importar desde GitHub
-    Route::post('/portfolio/import/github', [PortfolioImportController::class, 'importGitHub'])
-        ->name('portfolio.import.github');
-});
-
-
 // ----------------------------------------
 Route::prefix('familias-profesionales')->group(function () {
 
@@ -148,4 +130,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::middleware(['auth'])->group(function () {
+    // Formulario de importación
+    Route::get('/portfolio/import', [PortfolioImportController::class, 'showImportForm'])
+        ->name('portfolio.import.index');
+
+    // Importar desde JSON Resume
+    Route::post('/portfolio/import/json-resume', [PortfolioImportController::class, 'importJsonResume'])
+        ->name('portfolio.import.json-resume');
+
+    // Importar desde GitHub
+    Route::post('/portfolio/import/github', [PortfolioImportController::class, 'importGitHub'])
+        ->name('portfolio.import.github');
+});
+
+
 require __DIR__ . '/auth.php';
+require __DIR__ . '/analisis.php';
